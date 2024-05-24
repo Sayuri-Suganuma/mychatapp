@@ -1,5 +1,6 @@
 class Api::V1::Auth::ChatroomsController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
+  
   before_action :set_chatroom, only: %i[ show edit update destroy ]
   # before_action :authenticate_api_v1_user!
 
@@ -17,16 +18,12 @@ class Api::V1::Auth::ChatroomsController < ApplicationController
   end
 
   def create
-    # @chatroom = Chatroom.new(chatroom_params)
+    @chatroom = Chatroom.new(chatroom_params)
     Rails.logger.debug("Authenticate user before action called.")
-    @chatroom = Chatroom.new(
-      owner_id: chatroom_params[:owner_id],
-      partner_id: chatroom_params[:partner_id],
-      title: chatroom_params[:title]
-    )
     Rails.logger.debug("Params: #{params.inspect}")
     if @chatroom.save
-      render json: @chatroom, status: :created, location: @chatroom
+      # render json: @chatroom, status: :created, location: @chatroom
+      render json: @chatroom
       Rails.logger.debug("Chatroom saved successfully!")
     else
       render json: @chatroom.errors.full_messages, status: :unprocessable_entity
@@ -34,7 +31,6 @@ class Api::V1::Auth::ChatroomsController < ApplicationController
     end
   end
   
-
 
   def update
     if @chatroom.update(chatroom_params)
