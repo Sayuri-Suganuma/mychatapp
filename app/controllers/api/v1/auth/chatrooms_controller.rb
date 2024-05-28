@@ -5,8 +5,11 @@ class Api::V1::Auth::ChatroomsController < ApplicationController
   # before_action :authenticate_api_v1_user!
 
   def index
-    chatrooms = Chatroom.all
-    render json:chatrooms
+    @chatrooms = Chatroom.where(
+      "owner_id = :user_id OR partner_id = :user_id",
+      user_id: current_user.id
+    )
+    render json: @chatrooms
   end
 
   def show
@@ -57,6 +60,10 @@ class Api::V1::Auth::ChatroomsController < ApplicationController
 
   def chatroom_params
     params.require(:chatroom).permit(:owner_id, :partner_id, :title)
+  end
+
+  def current_user
+    @current_user ||= User.find_by(uid: request.headers['uid'])
   end
 
 end
