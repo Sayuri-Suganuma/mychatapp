@@ -4,15 +4,15 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :chatrooms, only: [:index, :new, :show, :create, :update, :destroy]
+      resources :sessions, only: [:create]
+      resources :chats, only: [:index, :create, :show]
       namespace :auth do
-        resources :chatrooms, only: [:index, :new, :show, :create, :update, :destroy]
-        resources :sessions, only: [:create]
       end
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
         registrations: 'api/v1/auth/registrations',
         sessions: 'api/v1/auth/sessions'
       }
-      resources :chats, only: [:index, :new, :show, :create, :update, :destroy]
     end
   end
   

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_21_020342) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_30_021332) do
   create_table "chatrooms", force: :cascade do |t|
     t.integer "owner_id", null: false
     t.integer "partner_id", null: false
@@ -61,5 +61,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_020342) do
   add_foreign_key "chatrooms", "users", column: "owner_id"
   add_foreign_key "chatrooms", "users", column: "partner_id"
   add_foreign_key "chats", "chatrooms"
-  add_foreign_key "chats", "chatrooms", column: "user_id"
+  add_foreign_key "chats", "users"
 end

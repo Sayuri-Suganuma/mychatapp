@@ -1,6 +1,5 @@
-class Api::V1::Auth::ChatroomsController < ApplicationController
+class Api::V1::ChatroomsController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
-  
   before_action :set_chatroom, only: %i[ show edit update destroy ]
   # before_action :authenticate_api_v1_user!
 
