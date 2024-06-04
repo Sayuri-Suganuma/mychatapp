@@ -1,5 +1,5 @@
 # app/controllers/users_controller.rb
-class Api::V1::Auth::UsersController < DeviseTokenAuth::RegistrationsController
+class Api::V1::UsersController < DeviseTokenAuth::RegistrationsController
   before_action :authenticate_api_v1_user!
 
   validates :email, uniqueness: true
@@ -17,6 +17,8 @@ class Api::V1::Auth::UsersController < DeviseTokenAuth::RegistrationsController
   # end
 
 end
+
+
 
 
 
