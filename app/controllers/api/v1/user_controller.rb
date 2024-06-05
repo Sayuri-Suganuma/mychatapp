@@ -2,7 +2,6 @@
 class Api::V1::UsersController < DeviseTokenAuth::RegistrationsController
   before_action :authenticate_api_v1_user!
 
-  validates :email, uniqueness: true
 
   # def create
   #   @user = User.find_by(email: sign_in_params[:email])
