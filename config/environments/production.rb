@@ -82,6 +82,8 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'dev-sugaapp-be.sakuramobile.jp' }
 
+  config.hosts << "dev-sugaapp-be.sakuramobile.jp"
+
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
