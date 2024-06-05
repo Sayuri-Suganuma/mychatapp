@@ -1,6 +1,6 @@
 # app/controllers/users_controller.rb
 class Api::V1::UsersController < DeviseTokenAuth::RegistrationsController
-  before_action :authenticate_api_v1_user!
+  before_action :authenticate_user!
 
 
   # def create
