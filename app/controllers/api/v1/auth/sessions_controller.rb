@@ -19,27 +19,6 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
     end
   end
 
-
-  # def destroy
-  #   client_id = request.headers['client']
-  #   uid = request.headers['uid']
-  #   access_token = request.headers['access-token']
-
-  #   user = User.find_by(uid: uid)
-
-  #   if user && user.tokens[client_id]
-  #     user.tokens.delete(client_id)
-
-  #     if user.save
-  #       render json: { message: 'Logged out successfully.' }, status: :ok
-  #     else
-  #       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
-  #     end
-  #   else
-  #     render json: { errors: ['User not found or client mismatch.'] }, status: :not_found
-  #   end
-  # end
-
   private
 
   def sign_in_params
