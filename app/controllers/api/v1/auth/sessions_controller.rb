@@ -12,6 +12,7 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
   end
 
   def validate_token
+    Rails.logger.debug("Token validation: current_user=#{current_user.inspect}")
     if current_user
       render json: { data: current_user }, status: :ok
     else
