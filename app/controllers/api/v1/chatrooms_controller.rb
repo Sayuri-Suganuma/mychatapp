@@ -1,13 +1,16 @@
 class Api::V1::ChatroomsController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :set_chatroom, only: %i[ show edit update destroy ]
-  # before_action :authenticate_api_v1_user!
+  before_action :authenticate_api_v1_user!
 
   def index
+    Rails.logger.debug("Received user_id: #{params[:user_id]}")
+    Rails.logger.debug("Current user: #{current_user.inspect}")
     @chatrooms = Chatroom.where(
       "owner_id = :user_id OR partner_id = :user_id",
       user_id: current_user.id
     )
+
     render json: @chatrooms
   end
 
