@@ -2,6 +2,8 @@ class Api::V1::ChatroomsController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :set_chatroom, only: %i[ show edit update destroy ]
   before_action :authenticate_api_v1_user!
+  before_action :debug_auth_token
+
 
   def index
     Rails.logger.debug("Received user_id: #{params[:user_id]}")
